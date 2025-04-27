@@ -1,0 +1,15 @@
+{
+  "name": "gaslitaf-podcast-site",
+  "version": "1.0.0",
+  "description": "GitHub Pages site for GASLIT-AF podcasts and theories",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "test": "npm run build && jest"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.1",
+    "jest": "^29.0.0"
+  },
+  "dependencies": {}
+}
