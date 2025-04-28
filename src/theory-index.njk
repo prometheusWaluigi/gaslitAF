@@ -12,6 +12,6 @@ eleventyComputed:
 <h1>{{ dir.title }}</h1>
 <ul>
   {% for file in dir.files %}
-    <li><a href="/{{ dir.url }}/{{ file | url_encode }}">{{ file.replace('.md','') }}</a></li>
+    <li><a href="{{ dir.url }}/{{ file | url_encode }}">{{ file.replace('.md','') }}</a></li>
   {% endfor %}
 </ul>

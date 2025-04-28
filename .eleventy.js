@@ -39,6 +39,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('styles.css');
 
   return {
+    pathPrefix: "/gaslitAF/",
     dir: {
       input: 'src',
       includes: '_includes',
