@@ -51,13 +51,13 @@ class TestAllLinks(unittest.TestCase):
 
     def test_audio_elements(self):
         self.driver.get(self.base_url)
-        audios = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_all_elements_located((By.TAG_NAME, 'audio'))
+        sources = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'audio source'))
         )
-        self.assertGreater(len(audios), 0)
+        self.assertGreater(len(sources), 0)
         seen = set()
-        for audio in audios:
-            src = audio.get_attribute('src')
+        for source in sources:
+            src = source.get_attribute('src')
             self.assertTrue(src.endswith('.mp3'))
             self.assertNotIn(src, seen)
             seen.add(src)
