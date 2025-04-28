@@ -12,7 +12,7 @@ jobs:
           node-version: '18'
       - run: npm install
       - name: Fix Eleventy permissions
-        run: chmod +x node_modules/.bin/eleventy node_modules/@11ty/eleventy/bin/eleventy.js
+        run: chmod +x node_modules/.bin/eleventy
       - run: npm run build
       - run: npm test
       - name: Set up Python
