@@ -1,7 +1,17 @@
 const fs = require('fs');
 const path = require('path');
+const markdownIt = require('markdown-it');
+const markdownItAnchor = require('markdown-it-anchor');
 
 module.exports = function(eleventyConfig) {
+  // Enable Markdown-it with anchor support for headings
+  const mdOptions = { html: true, breaks: true, linkify: true };
+  const mdLib = markdownIt(mdOptions).use(markdownItAnchor, {
+    permalink: markdownItAnchor.permalink.headerLink(),
+    slugify: eleventyConfig.getFilter('slugify')
+  });
+  eleventyConfig.setLibrary('md', mdLib);
+
   // URL-encode filter
   eleventyConfig.addFilter('url_encode', str => encodeURIComponent(str));
   // Slugify titles for IDs
