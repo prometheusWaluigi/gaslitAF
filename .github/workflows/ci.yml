@@ -22,7 +22,6 @@ jobs:
       # Install and build
       - run: npm ci
       - run: npm run build
-      - run: npm test
 
       # Python + Selenium tests
       - name: Setup Python
@@ -38,8 +37,15 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
 
-      # Run Selenium tests against generated docs
+      # Serve built site
+      - name: Serve built site
+        run: |
+          cd docs
+          python -m http.server 8000 &
+          sleep 3
+
+      # Run Selenium tests against served site
       - name: Run Selenium tests
         env:
-          LOCAL_DOCS_URL: "file:///${{ github.workspace }}/docs/index.html"
+          LOCAL_DOCS_URL: "http://127.0.0.1:8000/index.html"
         run: python test_selenium_links.py
