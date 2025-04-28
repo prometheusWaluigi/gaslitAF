@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "GitHub Pages site for GASLIT-AF podcasts and theories",
   "scripts": {
-    "build": "node ./node_modules/@11ty/eleventy/bin/eleventy.js",
-    "start": "node ./node_modules/@11ty/eleventy/bin/eleventy.js --serve",
+    "build": "npx eleventy",
+    "start": "npx eleventy --serve",
     "test": "npm run build && jest"
   },
   "devDependencies": {
