@@ -1,28 +1,45 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+      # Checkout repository
       - uses: actions/checkout@v3
+
+      # Node setup with cache
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Clean install dependencies
-        run: npm ci
-      - name: Ensure braces module installed
-        run: npm install braces
+          cache: 'npm'
+
+      # Install and build
+      - run: npm ci
       - run: npm run build
       - run: npm test
-      - name: Set up Python
+
+      # Python + Selenium tests
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-      - name: Install Selenium dependencies
+          python-version: '3.x'
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install selenium webdriver-manager
+
+      # Install Chrome for headless tests
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      # Run Selenium tests against generated docs
       - name: Run Selenium tests
+        env:
+          LOCAL_DOCS_URL: "file:///${{ github.workspace }}/docs/index.html"
         run: python test_selenium_links.py
