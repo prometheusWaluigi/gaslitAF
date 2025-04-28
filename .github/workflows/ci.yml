@@ -10,9 +10,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm install
-      - name: Fix Eleventy permissions
-        run: chmod +x node_modules/.bin/eleventy
+      - name: Clean install dependencies
+        run: npm ci
+      - name: Ensure braces module installed
+        run: npm install braces
       - run: npm run build
       - run: npm test
       - name: Set up Python
