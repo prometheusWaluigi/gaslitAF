@@ -11,7 +11,11 @@ Explore our comprehensive repository of theoretical papers and listen to our pod
 
 <ul>
 {% for dir in theoryCollections %}
-<li><a href="/{{ dir.url }}/index.html">{{ dir.title }}</a></li>
+<li>
+  <a href="https://github.com/prometheusWaluigi/gaslitAF/tree/main/{{ dir.url }}" target="_blank" rel="noopener">
+    {{ dir.title }}
+  </a>
+</li>
 {% endfor %}
 </ul>
 
