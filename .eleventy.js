@@ -2,6 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = function(eleventyConfig) {
+  // URL-encode filter
+  eleventyConfig.addFilter('url_encode', str => encodeURIComponent(str));
+  // Slugify titles for IDs
+  eleventyConfig.addFilter('slugify', str => str.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''));
+
   // Load and expose theory and podcast data globally
   const theoriesData = require('./src/_data/theories.js')();
   eleventyConfig.addGlobalData('theoryCollections', theoriesData.theoryCollections);

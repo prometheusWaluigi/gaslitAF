@@ -11,7 +11,7 @@ Explore our comprehensive repository of theoretical papers and listen to our pod
 
 <ul>
   {% for dir in theoryCollections %}
-    <li><a href="{{ dir.url }}index.html">{{ dir.title }}</a></li>
+    <li><a href="/{{ dir.url }}/index.html">{{ dir.title }}</a></li>
   {% endfor %}
 </ul>
 
@@ -22,7 +22,7 @@ Explore our comprehensive repository of theoretical papers and listen to our pod
     <li id="{{ podcast.title | slugify }}">
       <strong>{{ podcast.title }}</strong><br>
       <audio controls id="audio-{{ podcast.title | slugify }}">
-        <source src="{{ podcast.url }}{{ podcast.file }}" type="audio/mpeg">
+        <source src="/{{ podcast.url }}/{{ podcast.file | url_encode }}" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </li>

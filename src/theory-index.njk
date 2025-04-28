@@ -1,0 +1,15 @@
+---
+pagination:
+  data: theoryCollections
+  size: 1
+  alias: dir
+permalink: "/{{ dir.url }}/index.html"
+layout: default
+---
+
+<h2>{{ dir.title }}</h2>
+<ul>
+  {% for file in dir.files %}
+    <li><a href="/{{ dir.url }}/{{ file | url_encode }}">{{ file.replace('.md','') }}</a></li>
+  {% endfor %}
+</ul>

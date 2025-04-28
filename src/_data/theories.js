@@ -17,7 +17,7 @@ module.exports = function() {
     const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.md'));
     return {
       title: dir,
-      url: `/${dir}/`,
+      url: dir,
       files
     };
   });
