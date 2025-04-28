@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: '18'
       - run: npm install
-      - run: npm run build
+      - run: node ./node_modules/@11ty/eleventy/bin/eleventy.js
       - run: npm test
       - name: Set up Python
         uses: actions/setup-python@v4
